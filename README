@@ -1,7 +1,7 @@
 To get started with the code in this repository, you need to:
 
 - Go to https://dot.net/download and download .NET 5.0 or later
-- Clone this repository
+- Clone or download the code in this repository
 - Navigate your command-prompt to the folder `src/RestApiTestingGuide.WebApiApp` in the repository
 - Run `dotnet run`
 
