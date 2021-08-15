@@ -65,7 +65,11 @@ namespace RestApiTestingGuide.WebApiApp.Controllers
             }
 
             var isAdded = _repository.AddOrUpdate(product);
-            return isAdded ? CreatedAtAction(nameof(Get), product) : Ok();
+
+            return
+                isAdded
+                ? CreatedAtAction(nameof(Get), new { product.Id }, product)
+                : Ok();
         }
 
         [HttpPatch("{id}")]
