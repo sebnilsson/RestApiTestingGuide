@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using RestApiTestingGuide.WebApiApp.Models;
@@ -41,7 +42,7 @@ namespace RestApiTestingGuide.WebApiApp.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post([FromBody] Product product)
+        public ActionResult Post([Required][FromBody] Product product)
         {
             _logger.LogInformation($"Add Product: {product.Id}");
 
@@ -55,7 +56,7 @@ namespace RestApiTestingGuide.WebApiApp.Controllers
         }
 
         [HttpPut]
-        public ActionResult Put([FromBody] Product product)
+        public ActionResult<Product> Put([Required][FromBody] Product product)
         {
             _logger.LogInformation($"Put Product: {product.Id}");
 
@@ -69,11 +70,11 @@ namespace RestApiTestingGuide.WebApiApp.Controllers
             return
                 isAdded
                 ? CreatedAtAction(nameof(Get), new { product.Id }, product)
-                : Ok();
+                : Ok(product);
         }
 
         [HttpPatch("{id}")]
-        public ActionResult Patch([FromBody] Product product)
+        public ActionResult Patch([Required][FromBody] Product product)
         {
             _logger.LogInformation($"Patch Product: {product.Id}");
 
